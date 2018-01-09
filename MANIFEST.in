@@ -1,0 +1,4 @@
+include README.md LICENSE CONTRIBUTING.md catalog.xml
+recursive-include examples/ *
+recursive-include schemata/ *
+
