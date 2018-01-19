@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:cpe="http://cpe.mitre.org/language/2.0"
+  xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+  xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common"
+  xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0"
+  xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:ns0="http://purl.org/dc/elements/1.1/"
+  xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod"
+  xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0"
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+>
+  <DocumentTitle>DocumentTitle0</DocumentTitle>
+  <DocumentType>DocumentType0</DocumentType>
+  <DocumentPublisher Type="Vendor">
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>ID0</ID>
+    </Identification>
+    <Status>Draft</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1.0</Number>
+        <Date>2038-05-04T18:13:51.0</Date>
+        <Description>Something wrong with some product</Description>
+      </Revision>
+      <Revision>
+        <Number>1.1</Number>
+        <Date>2038-05-04T18:13:52.0</Date>
+        <Description>We excluded some products, but still in the fog</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2038-05-04T18:13:51.0</InitialReleaseDate>
+    <CurrentReleaseDate>2038-05-04T18:13:52.0</CurrentReleaseDate>
+  </DocumentTracking>
+</cvrfdoc>
