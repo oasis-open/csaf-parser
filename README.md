@@ -59,7 +59,7 @@ https://pypi.python.org/pypi/taxii2-client/0.2.0
 <p>Another common example is to query a document and parse out all of the elements in each vulnerability and save to html file as shown below:</span>
 <br><br>
 
-<span style="background-color: #e9e9e9">python cvrf_util.py --file examples/1.1/ms_cvrf.xml --cvrf-version 1.1 --output-format html --output-file ms_cvrf.html --vuln Vulnerability --cvrf all --prod all</span>
+`python cvrf_util.py --file examples/1.1/ms_cvrf.xml --cvrf-version 1.1 --output-format html --output-file ms_cvrf.html --vuln Vulnerability --cvrf all --prod all`
 <br><br>
 
 <table>
