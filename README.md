@@ -38,7 +38,7 @@ https://pypi.python.org/pypi/taxii2-client/0.2.0
 <h2>Common use-case command-line examples</h2>
 <p>One fairly common use-case would be to query a document and pull out the unique set of products with related fields from all vulnerabilities and save to excel file as shown below:
 
-<span style="background-color: #e9e9e9">python cvrf_util.py --file examples/1.1/ms_cvrf.xml --schema schemata/cvrf/1.1/cvrf.xsd --cvrf-version 1.1 --output-format csv --output-file ms_cvrf.csv --vuln ProductID --include-related-product-elements --unique-products --related-product-tags all</span>
+`python cvrf_util.py --file examples/1.1/ms_cvrf.xml --schema schemata/cvrf/1.1/cvrf.xsd --cvrf-version 1.1 --output-format csv --output-file ms_cvrf.csv --vuln ProductID --include-related-product-elements --unique-products --related-product-tags all`
 <br><br>
 
 <table>
