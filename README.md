@@ -33,6 +33,49 @@ https://pypi.python.org/pypi/taxii2-client/0.2.0
 
 </div>
 
+<div>
+<h1>CVRF Parsing Examples</h1>
+<h2>Common use-case command-line examples</h2>
+<p>One fairly common use-case would be to query a document and pull out the unique set of products with related fields from all vulnerabilities and save to excel file as shown below:
+
+<span style="background-color: #e9e9e9">python cvrf_util.py --file examples/1.1/ms_cvrf.xml --schema schemata/cvrf/1.1/cvrf.xsd --cvrf-version 1.1 --output-format csv --output-file ms_cvrf.csv --vuln ProductID --include-related-product-elements --unique-products --related-product-tags all</span>
+<br><br>
+
+<table>
+<tr><td colspan=2>Where the following command line parameters were applied:</td></tr>
+<tr><td>--file examples/1.1/ms_cvrf.xml</td><td>Specify the document we are parsing</td></tr>
+<tr><td>--schema schemata/cvrf/1.1/cvrf.xsd</td><td>Specify the schema</td></tr>
+<tr><td>--cvrf-version 1.1</td><td>Specify the CVRF version</td></tr>
+<tr><td>--output-format csv</td><td>Specify output format to CVS</td></tr>
+<tr><td>--output-file ms_cvrf.csv</td><td>Specify the output file</td></tr>
+<tr><td>--vuln ProductID</td><td>Specify elements to parse</td></tr>
+<tr><td>--include-related-product-elements</td><td>Tell output to include related product elements</td></tr>
+<tr><td>--unique-products</td><td>Specify that we want unique product rows per vulnerability</td></tr>
+<tr><td>--related-product-tags all</td><td>Specify which related product element tags to include for each product row</td></tr>
+</table>
+</p>
+
+<br>
+<p>Another common example is to query a document and parse out all of the elements in each vulnerability and save to html file as shown below:</span>
+<br><br>
+
+<span style="background-color: #e9e9e9">python cvrf_util.py --file examples/1.1/ms_cvrf.xml --cvrf-version 1.1 --output-format html --output-file ms_cvrf.html --vuln Vulnerability --cvrf all --prod all</span>
+<br><br>
+
+<table>
+<tr><td colspan=2>Where the following command line parameters were applied:</td></tr>
+<tr><td>--file examples/1.1/ms_cvrf.xml</td><td>Specify the document we are parsing</td></tr>
+<tr><td>--cvrf-version 1.1</td><td>Specify the CVRF version</td></tr>
+<tr><td>--output-format html</td><td>Specify output format to HTML</td></tr>
+<tr><td>--output-file ms_cvrf.html</td><td>Specify the output file</td></tr>
+<tr><td>--vuln Vulnerability</td><td>Specify elements to parse</td></tr>
+<tr><td>--cvrf all</td><td>Specify elements to parse</td></tr>
+<tr><td>--prod all</td><td>Specify elements to parse</td></tr>
+</table>
+
+
+</div>
+
 <div><h2><a id="purposeClarifications">Additions to Statement of Purpose</a></h2>
 
 <p>Repository Maintainers may include here any clarifications &mdash; any additional sections, subsections, and paragraphs that the Maintainer(s) wish to add as descriptive text, reflecting (sub-) project status, milestones, releases, modifications to statement of purpose, etc.  The project Maintainers will create and maintain this content on behalf of the participants.</p>
