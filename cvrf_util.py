@@ -311,12 +311,9 @@ def cvrf_dump(results, strip_ns, output_format, cvrf_doc, cvrf_version, args, re
     """
     for key in results:
         if key == output_format:       # if no file name specified, use stdout - "stdout"
-            f = codecs.EncodedFile(sys.stdout, data_encoding="utf-8")   # "UTF-8"
+            f = sys.stdout
         else:
-            try:
-                f = codecs.open(key, "w", encoding="utf-8")   # "UTF-8"
-            except IOError as e:
-                sys.exit("{0}: I/O error({1}) \"{2}\": {3}".format(progname, e.errno, key, e.strerror))
+            f = open(key, "w")
 
         print_header_rows(cvrf_doc, cvrf_version, args, output_format, f, related_product_tags)
 
