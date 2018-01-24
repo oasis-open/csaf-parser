@@ -643,9 +643,6 @@ def get_first_node_in_doc(parsables, cvrf_doc):
 
 def main(progname=None):
 
-    reload(sys)
-    sys.setdefaultencoding('utf8')
-
     # simple standard python logging
     logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename='csaf-parser.log', level=logging.DEBUG)  # filemode='w',
     logging.info('-----------------------------------------------')
