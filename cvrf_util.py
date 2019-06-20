@@ -14,11 +14,13 @@ This tool is based on the original cvrfparse utility created by Mike Schiffman o
 Farsight Security under the MIT License. https://github.com/mschiffm/cvrfparse
 """
 
+from __future__ import print_function
+
 import os
 import sys
 import copy
-import codecs
-import urllib2
+# import codecs
+# import urllib2
 import argparse
 import csv
 from datetime import datetime
@@ -29,7 +31,6 @@ __revision__ = "1.2.0"
 
 
 class CVRF_Syntax(object):
-
     # CVRF Elements and Namespaces.
     CVRF_ARGS = ["all", "DocumentTitle", "DocumentType", "DocumentPublisher", "DocumentTracking", "DocumentNotes",
                  "DocumentDistribution", "AggregateSeverity", "DocumentReferences", "Acknowledgments"]
@@ -40,24 +41,28 @@ class CVRF_Syntax(object):
                             "Vector", "TemporalScore", "Note", "FullProductName",
                             "Branch", "Revision", "Remediation", "Acknowledgment", "Threat"]
 
-    VULN_ARGS = ["all", "Title", "ID", "Notes", "DiscoveryDate", "ReleaseDate", "Involvements", "CVE", "CWE", "ProductID",
-                 "ProductStatuses", "Threats", "CVSSScoreSets", "Remediations", "References", "Acknowledgments", "Vulnerability"]
+    VULN_ARGS = ["all", "Title", "ID", "Notes", "DiscoveryDate", "ReleaseDate", "Involvements", "CVE", "CWE",
+                 "ProductID",
+                 "ProductStatuses", "Threats", "CVSSScoreSets", "Remediations", "References", "Acknowledgments",
+                 "Vulnerability"]
 
     PROD_ARGS = ["all", "Branch", "FullProductName", "Relationship", "ProductGroups", "ProductID"]
 
     def __init__(self, cvrf_version):
-
         # defaults to current cvrf version 1.2 specification unless otherwise specified
         self.CVRF_SCHEMA = "http://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/schemas/cvrf.xsd"
-        self.NAMESPACES = {x.upper(): "{http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/%s}" % x for x in ("cvrf", "vuln", "prod")}
+        self.NAMESPACES = {x.upper(): "{http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/%s}" % x for x in
+                           ("cvrf", "vuln", "prod")}
         self.CVRF_CATALOG = "schemata/catalog_1_2.xml"
         self.CVRF_SCHEMA_FILE = "schemata/cvrf/1.2/cvrf.xsd"
 
         if cvrf_version == '1.1':
             self.CVRF_SCHEMA = "http://www.icasi.org/CVRF/schema/cvrf/1.1/cvrf.xsd"
-            self.NAMESPACES = {x.upper(): "{http://www.icasi.org/CVRF/schema/%s/1.1}" % x for x in ("cvrf", "vuln", "prod")}
+            self.NAMESPACES = {x.upper(): "{http://www.icasi.org/CVRF/schema/%s/1.1}" % x for x in
+                               ("cvrf", "vuln", "prod")}
             self.CVRF_CATALOG = "schemata/catalog_1_1.xml"
             self.CVRF_SCHEMA_FILE = "schemata/cvrf/1.1/cvrf.xsd"
+
 
 class PrependerAction(argparse.Action):
     """
@@ -77,6 +82,7 @@ class NonDupBracketFormatter(argparse.HelpFormatter):
     """
     Customization for argparse. A formatter that is a more terse in repeated arguments.
     """
+
     def _format_args(self, action, default_metavar):
         get_metavar = self._metavar_formatter(action, default_metavar)
         if action.nargs == argparse.ZERO_OR_MORE:
@@ -118,7 +124,6 @@ def chop_ns_prefix(element):
 
 
 def print_header_rows(cvrf_doc, cvrf_version, args, output_format, f=sys.stdout, related_product_tags=[]):
-
     column_names = list()
     column_names.append('Namespace')
     column_names.append('Tag')
@@ -143,7 +148,7 @@ def print_header_rows(cvrf_doc, cvrf_version, args, output_format, f=sys.stdout,
                 html += '<th>' + column + '</th>'
 
         html += '</tr>'
-        print >> f, html
+        print(html, file=f)
 
     if output_format == 'csv':
         writer = csv.writer(f, dialect='excel')
@@ -151,10 +156,9 @@ def print_header_rows(cvrf_doc, cvrf_version, args, output_format, f=sys.stdout,
 
 
 def print_footer_rows(cvrf_doc, cvrf_version, args, output_format, f=sys.stdout, related_product_tags=[]):
-
     if output_format == 'html':
         html = '</table>'
-        print >> f, html
+        print(html, file=f)
 
 
 def print_node(cvrf_doc, cvrf_version, args, output_format, node, strip_ns, f=sys.stdout, related_product_tags=[]):
@@ -170,7 +174,6 @@ def print_node(cvrf_doc, cvrf_version, args, output_format, node, strip_ns, f=sy
 
     # should we collect related product elements data?  (for vuln prod elements only)
     if is_vuln_ns(node, cvrf_version) and is_productid_node(node) and args.include_related_product_elements:
-
         vuln_root_node = get_vulnerability_node(node)
         related_values = get_related_vulnerability_values(vuln_root_node, related_values, node, cvrf_doc)
 
@@ -201,7 +204,7 @@ def print_node(cvrf_doc, cvrf_version, args, output_format, node, strip_ns, f=sy
         # include optional related product elements
         if args.include_related_product_elements:
             for tag in related_product_tags:
-                related_value = ''      # default value
+                related_value = ''  # default value
                 for k, v in related_values.items():
                     if k.startswith(tag):
                         related_value = v
@@ -219,19 +222,19 @@ def print_node(cvrf_doc, cvrf_version, args, output_format, node, strip_ns, f=sy
                 html += '<td bgcolor="#ffffff">' + related_value_txt + '</td>'
 
         html += '</tr>'
-        print >> f, html
+        print(html, file=f)
 
     if output_format == 'txt':
         if node.tag:
-            print >> f, "[%s]" % (chop_ns_prefix(node.tag) if strip_ns else node.tag),
+            print("[%s]" % (chop_ns_prefix(node.tag) if strip_ns else node.tag), file=f)
 
         if node.text:
-            print >> f, node.text.encode('utf-8').strip()
+            print(node.text.strip(), file=f)
 
         if node.attrib:
             for key in node.attrib:
-                print >> f, "(%s: %s)" % (key, node.attrib[key])
-            print >> f
+                print("(%s: %s)" % (key, node.attrib[key]), file=f)
+            print('', file=f)
 
     if output_format == 'csv':
         writer = csv.writer(f, dialect='excel')
@@ -310,7 +313,7 @@ def cvrf_dump(results, strip_ns, output_format, cvrf_doc, cvrf_version, args, re
     strip_ns: boolean that when true indicates the namespace prefix will be chomped
     """
     for key in results:
-        if key == output_format:       # if no file name specified, use stdout - "stdout"
+        if key == output_format:  # if no file name specified, use stdout - "stdout"
             f = sys.stdout
         else:
             f = open(key, "w")
@@ -325,7 +328,8 @@ def cvrf_dump(results, strip_ns, output_format, cvrf_doc, cvrf_version, args, re
         f.close()
 
 
-def cvrf_dispatch(cvrf_doc, parsables, collate_vuln, strip_ns, cvrf_version, output_format, output_file, args, related_product_tags):
+def cvrf_dispatch(cvrf_doc, parsables, collate_vuln, strip_ns, cvrf_version, output_format, output_file, args,
+                  related_product_tags):
     """
     Filter through a CVRF document and perform user-specified actions and report the results
 
@@ -399,7 +403,6 @@ def has_child_product_nodes(node):
 
 # for specified node, get related producttree values for current and parent nodes
 def get_related_producttree_values(node, values, current_product_node, cvrf_doc):
-
     if node is not None:
 
         # climb the xpath node tree to the top capturing all the node values
@@ -414,8 +417,8 @@ def get_related_producttree_values(node, values, current_product_node, cvrf_doc)
                     text.append(key + ':' + node.attrib[key])
 
                 if node.text:
-                    if len(node.text.encode('utf-8').strip()) > 0:
-                        text.append(node.text.encode('utf-8').strip())
+                    if len(node.text.strip()) > 0:
+                        text.append(node.text.strip())
 
                 text = '|'.join(text)
                 if text:
@@ -442,7 +445,6 @@ def get_partial_key_in_dict(key, dict):
 
 # for specified node, get related vulnerability values for parent node values, sibling node values, etc
 def get_related_vulnerability_values(node, values, current_product_node, cvrf_doc):
-
     if node is not None:
         children = node.getchildren()
         child_index = 0
@@ -456,14 +458,14 @@ def get_related_vulnerability_values(node, values, current_product_node, cvrf_do
 
             # process the child if no children or has children specific properties for product
             process_child = False
-            if len(child.getchildren()) == 0:   # element has no children, applies to all elements
+            if len(child.getchildren()) == 0:  # element has no children, applies to all elements
                 process_child = True
 
             if has_child_product_nodes(child):
                 if has_child_product_node(child, current_product_node):
-                    process_child = True        # has children and applies to desired product id
+                    process_child = True  # has children and applies to desired product id
             else:
-                process_child = True            # has children but not for specific product, applies to all elements
+                process_child = True  # has children but not for specific product, applies to all elements
 
             if not process_child:
                 continue
@@ -476,8 +478,8 @@ def get_related_vulnerability_values(node, values, current_product_node, cvrf_do
                     text.append(key + ':' + child.attrib[key])
 
                 if child.text:
-                    if len(child.text.encode('utf-8').strip()) > 0:
-                        text.append(child.text.encode('utf-8').strip())
+                    if len(child.text.strip()) > 0:
+                        text.append(child.text.strip())
 
                 text = '|'.join(text)
                 if text:
@@ -493,7 +495,7 @@ def get_related_vulnerability_values(node, values, current_product_node, cvrf_do
                 tag = chop_ns_prefix(child.tag) + '_' + chop_ns_prefix(child.getparent().tag)
                 child_tag = chop_ns_prefix(child.tag)
                 parent_tag = chop_ns_prefix(child.getparent().tag)
-                text = child.text.encode('utf-8').strip()
+                text = child.text.strip()
 
                 if text:
                     # put all elements with same parent tag together
@@ -560,7 +562,7 @@ def cvrf_parse(cvrf_doc, parsables, output_format, output_file, args, cvrf_versi
 
     # Hardcoded output for now, eventually make this user-tunable
     key = output_file if output_file else output_format
-    return {key: items}     # "stdout"
+    return {key: items}  # "stdout"
 
 
 def cvrf_collate_vuln(cvrf_doc, cvrf_version, output_format):
@@ -573,7 +575,9 @@ def cvrf_collate_vuln(cvrf_doc, cvrf_version, output_format):
     results = {}
     # Obtain document title to use in the filename(s) tiptoeing around around the curly braces in our NS definition
     document_title = cvrf_doc.findtext("cvrf:DocumentTitle",
-                                       namespaces={"cvrf": CVRF_Syntax(cvrf_version).NAMESPACES["CVRF"].replace("{", "").replace("}", "")}).strip().replace(" ", "_")
+                                       namespaces={"cvrf": CVRF_Syntax(cvrf_version).NAMESPACES["CVRF"].replace("{",
+                                                                                                                "").replace(
+                                           "}", "")}).strip().replace(" ", "_")
 
     # Constrain Xpath search to the Vulnerability container
     for node in cvrf_doc.findall(".//" + CVRF_Syntax(cvrf_version).NAMESPACES["VULN"] + "Vulnerability"):
@@ -639,9 +643,9 @@ def get_first_node_in_doc(parsables, cvrf_doc):
 
 
 def main(progname=None):
-
     # simple standard python logging
-    logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename='csaf-parser.log', level=logging.DEBUG)  # filemode='w',
+    logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename='csaf-parser.log',
+                        level=logging.DEBUG)  # filemode='w',
     logging.info('-----------------------------------------------')
 
     progname = progname if progname else os.path.basename(sys.argv[0])
@@ -649,7 +653,7 @@ def main(progname=None):
     logging.info('command line args: ' + str(sys.argv))
 
     default_cvrf_version = "1.2"
-    default_output_format = "txt"        # ["csv", "html", "txt"]
+    default_output_format = "txt"  # ["csv", "html", "txt"]
 
     # get specified cvrf version from command line args if any present as its needed to process below args
     parser = argparse.ArgumentParser(add_help=False)
@@ -664,19 +668,22 @@ def main(progname=None):
     parser = argparse.ArgumentParser(formatter_class=NonDupBracketFormatter,
                                      description="Validate/parse a CVRF document and emit user-specified bits.")
 
-    parser.add_argument("-f", "--file", required="True", action="store",
+    parser.add_argument("-f", "--file", required=True, action="store",
                         help="candidate CVRF XML file")
 
-    parser.add_argument("--cvrf-version", action="store", default=cvrf_version, choices=CVRF_Syntax(cvrf_version).cvrf_versions,
+    parser.add_argument("--cvrf-version", action="store", default=cvrf_version,
+                        choices=CVRF_Syntax(cvrf_version).cvrf_versions,
                         help="specify cvrf version")
 
     parser.add_argument("--output-file", action="store",
                         help="specify output file name")
 
-    parser.add_argument("--output-format", action="store", default=default_output_format, choices=CVRF_Syntax(cvrf_version).output_formats,
+    parser.add_argument("--output-format", action="store", default=default_output_format,
+                        choices=CVRF_Syntax(cvrf_version).output_formats,
                         help="specify output format")
 
-    parser.add_argument("--include-related-product-elements", dest="include_related_product_elements", default=False, action="store_true",
+    parser.add_argument("--include-related-product-elements", dest="include_related_product_elements", default=False,
+                        action="store_true",
                         help="specify if output should contains include related product elements.")
 
     parser.add_argument('--related-product-tags', nargs="*", choices=CVRF_Syntax(cvrf_version).related_product_tags,
@@ -707,7 +714,8 @@ def main(progname=None):
     parser.add_argument("-S", "--schema", action="store",
                         help="specify local alternative for cvrf.xsd")
     parser.add_argument("-C", "--catalog", action="store",
-                        help="specify location for catalog.xml (default is {0})".format(CVRF_Syntax(cvrf_version).CVRF_CATALOG))
+                        help="specify location for catalog.xml (default is {0})".format(
+                            CVRF_Syntax(cvrf_version).CVRF_CATALOG))
 
     parser.add_argument("-v", "--version", action="version", version="%(prog)s " + __revision__)
 
@@ -751,14 +759,18 @@ def main(progname=None):
     # to pass to the CVRF validator/parser
     try:
         logging.info('parsing document...')
-        cvrf_doc = etree.parse(args.file, etree.XMLParser(encoding="utf-8"))   # "utf-8"
+        cvrf_doc = etree.parse(args.file, etree.XMLParser(encoding="utf-8"))  # "utf-8"
         logging.info('document successfully parsed')
     except IOError:
         logging.error("{0}: I/O error: \"{1}\" does not exist".format(progname, args.file))
         sys.exit("{0}: I/O error: \"{1}\" does not exist".format(progname, args.file))
     except etree.XMLSyntaxError as e:
-        logging.error("{0}: Parsing error, document \"{1}\" is not well-formed: {2}".format(progname, args.file, e.error_log.filter_from_level(etree.ErrorLevels.FATAL)))
-        sys.exit("{0}: Parsing error, document \"{1}\" is not well-formed: {2}".format(progname, args.file, e.error_log.filter_from_level(etree.ErrorLevels.FATAL)))
+        logging.error("{0}: Parsing error, document \"{1}\" is not well-formed: {2}".format(progname, args.file,
+                                                                                            e.error_log.filter_from_level(
+                                                                                                etree.ErrorLevels.FATAL)))
+        sys.exit("{0}: Parsing error, document \"{1}\" is not well-formed: {2}".format(progname, args.file,
+                                                                                       e.error_log.filter_from_level(
+                                                                                           etree.ErrorLevels.FATAL)))
 
     # check to make sure cvrf namespace in doc matches cvrf version from command line args
     logging.info('verifying cvrf version...')
@@ -772,11 +784,17 @@ def main(progname=None):
         if doc_cvrf_version == arg_cvrf_version:
             logging.info('OK: CVRF version matches document!')
         else:
-            logging.error('CVRF version mismatch! Specified cvrf version does not match the namespace in the cvrf document!')
-            sys.exit("{0}: CVRF version mismatch! Specified cvrf version does not match the namespace in the cvrf document!".format(progname))
+            logging.error(
+                'CVRF version mismatch! Specified cvrf version does not match the namespace in the cvrf document!')
+            sys.exit(
+                "{0}: CVRF version mismatch! Specified cvrf version does not match the namespace in the cvrf document!".format(
+                    progname))
     else:
-        logging.error('Unable to check cvrf version in document. Cannot parse document or get node based on specified parseable elements!\nProbably a cvrf version mismatch...try using different cvrf version.')
-        sys.exit("{0}: Unable to check cvrf version in document. Cannot parse document or get node based on specified parseable elements!\nProbably a cvrf version mismatch...try using different cvrf version.".format(progname))
+        logging.error(
+            'Unable to check cvrf version in document. Cannot parse document or get node based on specified parseable elements!\nProbably a cvrf version mismatch...try using different cvrf version.')
+        sys.exit(
+            "{0}: Unable to check cvrf version in document. Cannot parse document or get node based on specified parseable elements!\nProbably a cvrf version mismatch...try using different cvrf version.".format(
+                progname))
 
     if args.validate is True:
         logging.info('validating cvrf document...')
@@ -809,20 +827,22 @@ def main(progname=None):
             sys.exit("{0}: {1}".format(progname, result))
         else:
             logging.info(result)
-            print >> sys.stderr, result
+            print(result, file=sys.stderr)
 
     logging.info('calling cvrf_dispatch...')
-    cvrf_dispatch(cvrf_doc, parsables, args.collate_vuln, args.strip_ns, cvrf_version, output_format, output_file, args, related_product_tags)
+    cvrf_dispatch(cvrf_doc, parsables, args.collate_vuln, args.strip_ns, cvrf_version, output_format, output_file, args,
+                  related_product_tags)
     logging.info('successfully finished...')
+
 
 if __name__ == "__main__":
     progname = os.path.basename(sys.argv[0])
 
     try:
         main(progname)
-    except Exception, value:
+    except Exception:
         (exc_type, exc_value, exc_tb) = sys.exc_info()
-        sys.excepthook(exc_type, exc_value, exc_tb)     # if debugging
+        sys.excepthook(exc_type, exc_value, exc_tb)  # if debugging
         sys.exit("%s: %s: %s" % (progname, exc_type.__name__, exc_value))
 
     logging.info('bye bye')
