@@ -775,7 +775,13 @@ def main(progname=None):
     # check to make sure cvrf namespace in doc matches cvrf version from command line args
     logging.info('verifying cvrf version...')
     first_node = get_first_node_in_doc(parsables, cvrf_doc)
-    doc_cvrf_version = first_node.nsmap['cvrf'] if first_node is not None else ''
+    if first_node is not None:
+        if 'cvrf' in first_node.nsmap:
+            doc_cvrf_version = first_node.nsmap['cvrf']
+        else:
+            doc_cvrf_version = first_node.nsmap[None]
+    else:
+        doc_cvrf_version = ''
     logging.info('cvrf version from document: ' + doc_cvrf_version)
     arg_cvrf_version = CVRF_Syntax(cvrf_version).NAMESPACES["CVRF"].replace("{", "").replace("}", "")
     logging.info('cvrf version from args: ' + arg_cvrf_version)
