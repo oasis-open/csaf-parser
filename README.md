@@ -6,6 +6,8 @@
 
 <p>This GitHub public repository ( <b><a href="https://github.com/oasis-open/csaf-parser">https://github.com/oasis-open/csaf-parser</a></b> ) was created at the request of the <a href="https://www.oasis-open.org/committees/csaf/">OASIS Common Security Advisory Framework (CSAF) TC</a> as an <a href="https://www.oasis-open.org/resources/open-repositories/">OASIS TC Open Repository</a> to support development of open source resources related to Technical Committee work.</p>
 
+**NOTE**: The current version of this parser only supports [CVRF 1.2 (XML-based specification)](http://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html). It does not support the [CSAF 2.0 JSON schema draft](https://github.com/oasis-tcs/csaf/blob/master/csaf_2.0/json_schema/csaf_json_schema.json). 
+
 <p>While this TC Open Repository remains associated with the sponsor TC, its development priorities, leadership, intellectual property terms, participation rules, and other matters of governance are <a href="https://github.com/oasis-open/csaf-parser/blob/master/CONTRIBUTING.md#governance-distinct-from-oasis-tc-process">separate and distinct</a> from the OASIS TC Process and related policies.</p>
 
 <p>All contributions made to this TC Open Repository are subject to open source license terms expressed in the <a href="https://www.oasis-open.org/sites/www.oasis-open.org/files/BSD-3-Clause.txt">BSD-3-Clause License</a>.  That license was selected as the declared <a href="https://www.oasis-open.org/resources/open-repositories/licenses">"Applicable License"</a> when the TC Open Repository was created.</p>
@@ -30,6 +32,49 @@ https://pypi.python.org/pypi/medallion/
 https://pypi.python.org/pypi/stix2/
 https://pypi.python.org/pypi/taxii2-client/0.2.0
 -->
+
+</div>
+
+<div>
+<h1>CVRF Parsing Examples</h1>
+<h2>Common use-case command-line examples</h2>
+<p>One fairly common use-case would be to query a document and pull out the unique set of products with related fields from all vulnerabilities and save to excel file as shown below:
+
+`python cvrf_util.py --file examples/1.1/ms_cvrf.xml --schema schemata/cvrf/1.1/cvrf.xsd --cvrf-version 1.1 --output-format csv --output-file ms_cvrf.csv --vuln ProductID --include-related-product-elements --unique-products --related-product-tags all`
+<br><br>
+
+<table>
+<tr><td colspan=2>Where the following command line parameters were applied:</td></tr>
+<tr><td>--file examples/1.1/ms_cvrf.xml</td><td>Specify the document we are parsing</td></tr>
+<tr><td>--schema schemata/cvrf/1.1/cvrf.xsd</td><td>Specify the schema</td></tr>
+<tr><td>--cvrf-version 1.1</td><td>Specify the CVRF version</td></tr>
+<tr><td>--output-format csv</td><td>Specify output format to CVS</td></tr>
+<tr><td>--output-file ms_cvrf.csv</td><td>Specify the output file</td></tr>
+<tr><td>--vuln ProductID</td><td>Specify elements to parse</td></tr>
+<tr><td>--include-related-product-elements</td><td>Tell output to include related product elements</td></tr>
+<tr><td>--unique-products</td><td>Specify that we want unique product rows per vulnerability</td></tr>
+<tr><td>--related-product-tags all</td><td>Specify which related product element tags to include for each product row</td></tr>
+</table>
+</p>
+
+<br>
+<p>Another common example is to query a document and parse out all of the elements in each vulnerability and save to html file as shown below:</span>
+<br><br>
+
+`python cvrf_util.py --file examples/1.1/ms_cvrf.xml --cvrf-version 1.1 --output-format html --output-file ms_cvrf.html --vuln Vulnerability --cvrf all --prod all`
+<br><br>
+
+<table>
+<tr><td colspan=2>Where the following command line parameters were applied:</td></tr>
+<tr><td>--file examples/1.1/ms_cvrf.xml</td><td>Specify the document we are parsing</td></tr>
+<tr><td>--cvrf-version 1.1</td><td>Specify the CVRF version</td></tr>
+<tr><td>--output-format html</td><td>Specify output format to HTML</td></tr>
+<tr><td>--output-file ms_cvrf.html</td><td>Specify the output file</td></tr>
+<tr><td>--vuln Vulnerability</td><td>Specify elements to parse</td></tr>
+<tr><td>--cvrf all</td><td>Specify elements to parse</td></tr>
+<tr><td>--prod all</td><td>Specify elements to parse</td></tr>
+</table>
+
 
 </div>
 

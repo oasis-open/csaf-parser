@@ -30,8 +30,9 @@
     schemaLocation="http://scap.nist.gov/schema/cvss-v2/1.0/cvss-v2_0.9.xsd"/>
   <xs:import namespace="https://www.first.org/cvss/cvss-v3.0.xsd"
     schemaLocation="https://www.first.org/cvss/cvss-v3.0.xsd"/>
-  <xs:import namespace="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common"
-    schemaLocation="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common.xsd"/>
+  <!-- <xs:import namespace="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" schemaLocation="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common.xsd"/> -->
+  <xs:import namespace="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common" schemaLocation="http://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/schemas/common.xsd"/>
+
   <!-- =============================================================================== -->
   <!-- ============================ SCHEMA INFORMATION =============================== -->
   <!-- =============================================================================== -->

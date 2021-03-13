@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cvrfdoc
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:cpe="http://cpe.mitre.org/language/2.0"
+  xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+  xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common"
+  xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0"
+  xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:ns0="http://purl.org/dc/elements/1.1/"
+  xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod"
+  xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0"
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+  >
+  <!-- Document wide context information -->
+  <DocumentTitle>Apache Struts2 Jakarta Multipart Parser File Upload Code Execution Vulnerability Affecting Cisco Products</DocumentTitle>
+  <DocumentType>Cisco Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>Emergency Support:
++1 877 228 7302 (toll-free within North America)
++1 408 525 6532 (International direct-dial)
+Non-emergency Support:
+Email: psirt@cisco.com
+Support requests that are received via e-mail are typically acknowledged within 48 hours.</ContactDetails>
+    <IssuingAuthority>Cisco product security incident response is the responsibility of the Cisco Product Security Incident Response Team (PSIRT). The Cisco PSIRT is a dedicated, global team that manages the receipt, investigation, and public reporting of security vulnerability information that is related to Cisco products and networks. The on-call Cisco PSIRT works 24x7 with Cisco customers, independent security researchers, consultants, industry organizations, and other vendors to identify possible security issues with Cisco products and networks.
+More information can be found in Cisco Security Vulnerability Policy available at http://www.cisco.com/web/about/security/psirt/security_vulnerability_policy.html</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>cisco-sa-20170310-struts2</ID>
+    </Identification>
+    <Status>Interim</Status>
+    <Version>1.4</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1.0</Number>
+        <Date>2017-03-10T20:43:55</Date>
+        <Description>Initial public release.</Description>
+      </Revision>
+      <Revision>
+        <Number>1.1</Number>
+        <Date>2017-03-11T23:37:26</Date>
+        <Description>Updated product lists.</Description>
+      </Revision>
+      <Revision>
+        <Number>1.2</Number>
+        <Date>2017-03-13T00:06:20</Date>
+        <Description>Updated product lists.</Description>
+      </Revision>
+      <Revision>
+        <Number>1.3</Number>
+        <Date>2017-03-13T22:24:49</Date>
+        <Description>Updated product lists.</Description>
+      </Revision>
+
+      <Revision>
+        <Number>1.4</Number>
+        <Date>2017-03-14T21:03:12</Date>
+        <Description>Updated product lists.</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2017-03-10T19:30:00</InitialReleaseDate>
+    <CurrentReleaseDate>2017-03-14T21:03:12</CurrentReleaseDate>
+    <Generator>
+      <Engine>TVCE</Engine>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Summary" Type="General" Ordinal="1">On March 6, 2017, Apache disclosed a vulnerability in the Jakarta multipart parser used in Apache Struts2 that could allow an attacker to execute commands remotely on the targeted system using a crafted Content-Type header value.
+
+This vulnerability has been assigned CVE-ID CVE-2017-5638.
+
+This advisory is available at the following link:
+https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20170310-struts2 ["https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20170310-struts2"]</Note>
+    <Note Title="CVSS 3.0 Notice" Type="Other" Ordinal="2">Although CVRF version 1.1 does not support CVSS version 3, the CVSS score in this CVRF file is a CVSSv3 base and temporal score, as Cisco is now scoring vulnerabilities in CVSSv3.</Note>
+  </DocumentNotes>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20170310-struts2</URL>
+      <Description>Apache Struts2 Jakarta Multipart Parser File Upload Code Execution Vulnerability Affecting Cisco Products</Description>
+    </Reference>
+  </DocumentReferences>
+  <!-- Vulnerability section -->
+  <Vulnerability Ordinal="1"
+   xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Title>Apache Struts Jakarta Multipart Parser File Upload Code Execution Vulnerability</Title>
+    <Notes>
+      <Note Title="Summary" Type="Summary" Ordinal="1">A vulnerability in the Jakarta multipart parser of Apache Struts could allow an unauthenticated, remote attacker to execute arbitrary code on an affected system.
+
+
+
+The vulnerability is due to improper handling of the Content-Type header value when performing a file upload based on the Jakarta multipart parser of the affected software. An attacker could exploit this vulnerability by persuading a targeted user to upload a malicious file. Once the Jakarta multipart parser of the affected application uploads the file, the attacker could have the ability to execute arbitrary code.</Note>
+    </Notes>
+    <CVE>CVE-2017-5638</CVE>
+    <Remediations>
+      <Remediation Type="Workaround">
+        <Description>Any workarounds, when available, are documented in the Cisco bugs, which are accessible through the Cisco Bug Search Tool ["https://bst.cloudapps.cisco.com/bugsearch/bug/BUGID"].</Description>
+      </Remediation>
+    </Remediations>
+
+    <References>
+      <Reference Type="Self">
+        <vuln:URL>https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20170310-struts2</vuln:URL>
+        <Description>Apache Struts2 Jakarta Multipart Parser File Upload Code Execution Vulnerability Affecting Cisco Products</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+  <!-- No more elements to follow -->
+</cvrfdoc>

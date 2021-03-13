@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc xmlns="http://www.icasi.org/CVRF/schema/cvrf/1.1" xmlns:cvrf="http://www.icasi.org/CVRF/schema/cvrf/1.1">
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: eap7-jboss-ec2-eap security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification><ID>RHSA-2018:0005</ID></Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+       <Revision>
+         <Number>1</Number>
+         <Date>2018-01-03T10:33:00Z</Date>
+         <Description>Current version</Description>
+       </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2018-01-03T10:33:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2018-01-03T10:33:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat rhsa-to-cvrf 2.1</Engine>
+      <Date>2018-01-03T10:52:01Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for eap7-jboss-ec2-eap is now available for Red Hat JBoss Enterprise Application Platform 7.0 for Red Hat Enterprise Linux 6 and Red Hat JBoss Enterprise Application Platform 7.0 for Red Hat Enterprise Linux 7.
+
+Red Hat Product Security has rated this update as having a security impact of Important. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.
+    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The eap7-jboss-ec2-eap packages provide scripts for Red Hat JBoss Enterprise Application Platform running on the Amazon Web Services (AWS) Elastic Compute Cloud (EC2).
+
+With this update, the eap7-jboss-ec2-eap package has been updated to ensure compatibility with Red Hat JBoss Enterprise Application Platform 7.0.9.
+
+Refer to the JBoss Enterprise Application Platform 7.0.9 Release Notes, linked to in the References section, for information on the most significant bug fixes and enhancements included in this release.
+
+Security Fix(es):
+
+* It was found that Apache Lucene would accept an object from an unauthenticated user that could be manipulated through subsequent post requests. An attacker could use this flaw to assemble an object that could permit execution of arbitrary code if the server enabled Apache Solr's Config API. (CVE-2017-12629)
+
+* It was discovered that the jboss init script performed unsafe file handling which could result in local privilege escalation. (CVE-2017-12189)
+
+* It was found that GZIPInterceptor is enabled when not necessarily required in RESTEasy. An attacker could use this flaw to launch a Denial of Service attack. (CVE-2016-6346)
+
+* It was found that the fix for CVE-2017-2666 was incomplete and invalid characters are still allowed in the query string and path parameters. This could be exploited, in conjunction with a proxy that also permitted the invalid characters but with a different interpretation, to inject data into the HTTP response. By manipulating the HTTP response the attacker could poison a web-cache, perform an XSS attack, or obtain sensitive information from requests other than their own. (CVE-2017-7559)
+
+* It was discovered that the CORS Filter did not add an HTTP Vary header indicating that the response varies depending on Origin. This permitted client and server side cache poisoning in some circumstances. (CVE-2017-7561)
+
+* It was found that properties based files of the management and the application realm configuration that contain user to role mapping are world readable allowing access to users and roles information to all the users logged in to the system. (CVE-2017-12167)
+
+* It was discovered that Undertow processes http request headers with unusual whitespaces which can cause possible http request smuggling. (CVE-2017-12165)
+
+Red Hat would like to thank Mikhail Egorov (Odin) for reporting CVE-2016-6346. The CVE-2017-7559 and CVE-2017-12165 issues were discovered by Stuart Douglas (Red Hat); the CVE-2017-7561 issue was discovered by Jason Shepherd (Red Hat Product Security); and the CVE-2017-12167 issue was discovered by Brian Stansberry (Red Hat) and Jeremy Choi (Red Hat).
+    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">Please see https://www.redhat.com/footer/terms-of-use.html</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright © 2018 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Important</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+       <URL>https://access.redhat.com/errata/RHSA-2018:0005</URL>
+       <Description>https://access.redhat.com/errata/RHSA-2018:0005</Description>
+    </Reference>
+    <Reference>
+       <URL>https://access.redhat.com/security/updates/classification/#important</URL>
+       <Description>https://access.redhat.com/security/updates/classification/#important</Description>
+    </Reference>
+    <Reference>
+       <URL>https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/</URL>
+       <Description>https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/</Description>
+    </Reference>
+    <Reference>
+       <URL>https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/installation-guide/</URL>
+       <Description>https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/version-7.0/installation-guide/</Description>
+    </Reference>
+    <Reference>
+       <URL>https://access.redhat.com/documentation/en/jboss-enterprise-application-platform/</URL>
+       <Description>https://access.redhat.com/documentation/en/jboss-enterprise-application-platform/</Description>
+    </Reference>
+    <Reference>
+       <URL>https://issues.jboss.org/browse/JBEAP-12351</URL>
+       <Description>https://issues.jboss.org/browse/JBEAP-12351</Description>
+    </Reference>
+  </DocumentReferences>
+  <ProductTree xmlns="http://www.icasi.org/CVRF/schema/prod/1.1">
+    <Branch Type="Product Family" Name="Red Hat JBoss Enterprise Application Platform">
+      <Branch Type="Product Name" Name="Red Hat JBoss Enterprise Application Platform 7.0 for RHEL 6 Server">
+        <FullProductName ProductID="6Server-JBEAP-7.0">Red Hat JBoss Enterprise Application Platform 7.0 for RHEL 6 Server</FullProductName>
+      </Branch>
+      <Branch Type="Product Name" Name="Red Hat JBoss Enterprise Application Platform 7.0 for RHEL 7 Server">
+        <FullProductName ProductID="7Server-JBEAP-7.0">Red Hat JBoss Enterprise Application Platform 7.0 for RHEL 7 Server</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6">
+      <FullProductName ProductID="eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6">eap7-jboss-ec2-eap-7.0.9-2.GA_redhat_2.ep7.el6.src.rpm</FullProductName>
+    </Branch>
+    <Branch Type="Product Version" Name="eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7">
+      <FullProductName ProductID="eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7">eap7-jboss-ec2-eap-7.0.9-2.GA_redhat_2.ep7.el7.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6" RelationType="Default Component Of" RelatesToProductReference="6Server-JBEAP-7.0">
+      <FullProductName ProductID="6Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6">eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6 as a component of Red Hat JBoss Enterprise Application Platform 7.0 for RHEL 6 Server</FullProductName>
+    </Relationship>
+    <Relationship ProductReference="eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7" RelationType="Default Component Of" RelatesToProductReference="7Server-JBEAP-7.0">
+      <FullProductName ProductID="7Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7">eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7 as a component of Red Hat JBoss Enterprise Application Platform 7.0 for RHEL 7 Server</FullProductName>
+    </Relationship>
+  </ProductTree>
+
+  <Vulnerability Ordinal="1" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">It was found that GZIPInterceptor is enabled when not necessarily required in RESTEasy. An attacker could use this flaw to launch a Denial of Service attack. </Note></Notes>
+    <DiscoveryDate>2016-08-29T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2016-09-01T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2016-6346</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6</ProductID>
+      <ProductID>7Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>5.0</BaseScore>
+      <Vector>AV:N/AC:L/Au:N/C:N/I:N/A:P</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, back up your existing Red Hat JBoss Enterprise Application Platform installation and deployed applications.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0005</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2016-6346</URL>
+        <Description>CVE-2016-6346</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1372120</URL>
+        <Description>bz#1372120: CVE-2016-6346 RESTEasy: Abuse of GZIPInterceptor in RESTEasy can lead to denial of service attack</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>Red Hat would like to thank Mikhail Egorov (Odin) for reporting this issue.</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="2" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">It was discovered that Undertow processes http request headers with unusual whitespaces which can cause possible http request smuggling. </Note></Notes>
+    <DiscoveryDate>2017-09-10T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-12-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-12165</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6</ProductID>
+      <ProductID>7Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Low</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, back up your existing Red Hat JBoss Enterprise Application Platform installation and deployed applications.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0005</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-12165</URL>
+        <Description>CVE-2017-12165</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1490301</URL>
+        <Description>bz#1490301: CVE-2017-12165 undertow: improper whitespace parsing leading to potential HTTP request smuggling</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Stuart Douglas (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="3" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">It was found that properties based files of the management and the application realm configuration that contain user to role mapping are world readable allowing access to users and roles information to all the users logged in to the system. </Note></Notes>
+    <DiscoveryDate>2017-09-11T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-09-14T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-12167</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6</ProductID>
+      <ProductID>7Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, back up your existing Red Hat JBoss Enterprise Application Platform installation and deployed applications.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0005</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-12167</URL>
+        <Description>CVE-2017-12167</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1491612</URL>
+        <Description>bz#1491612: CVE-2017-12167 EAP-7: Wrong privileges on multiple property files</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Brian Stansberry (Red Hat) and Jeremy Choi (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="4" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">It was discovered that the jboss init script performed unsafe file handling which could result in local privilege escalation. </Note></Notes>
+    <DiscoveryDate>2017-10-08T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2018-01-03T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-12189</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6</ProductID>
+      <ProductID>7Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Important</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, back up your existing Red Hat JBoss Enterprise Application Platform installation and deployed applications.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0005</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-12189</URL>
+        <Description>CVE-2017-12189</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1499631</URL>
+        <Description>bz#1499631: CVE-2017-12189 jboss: unsafe chown of server.log in jboss init script allows privilege escalation (Incomplete fix for CVE-2016-8656)</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="5" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">It was found that Apache Lucene would accept an object from an unauthenticated user that could be manipulated through subsequent post requests. An attacker could use this flaw to assemble an object that could permit execution of arbitrary code if the server enabled Apache Solr's Config API. </Note></Notes>
+    <DiscoveryDate>2017-10-08T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-10-12T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-12629</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6</ProductID>
+      <ProductID>7Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Critical</Description></Threat></Threats>
+    <CVSSScoreSets><ScoreSet>
+      <BaseScore>10</BaseScore>
+      <Vector>AV:N/AC:L/Au:N/C:C/I:C/A:C</Vector>
+    </ScoreSet></CVSSScoreSets>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, back up your existing Red Hat JBoss Enterprise Application Platform installation and deployed applications.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0005</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/vulnerabilities/CVE-2017-12629</URL>
+        <Description>https://access.redhat.com/security/vulnerabilities/CVE-2017-12629</Description>
+      </Reference>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-12629</URL>
+        <Description>CVE-2017-12629</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1501529</URL>
+        <Description>bz#1501529: CVE-2017-12629 Solr: Code execution via entity expansion</Description>
+      </Reference>
+    </References>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="6" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">It was found that the fix for CVE-2017-2666 was incomplete and invalid characters are still allowed in the query string and path parameters. This could be exploited, in conjunction with a proxy that also permitted the invalid characters but with a different interpretation, to inject data into the HTTP response. By manipulating the HTTP response the attacker could poison a web-cache, perform an XSS attack, or obtain sensitive information from requests other than their own. </Note></Notes>
+    <DiscoveryDate>2017-08-09T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-12-13T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-7559</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6</ProductID>
+      <ProductID>7Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, back up your existing Red Hat JBoss Enterprise Application Platform installation and deployed applications.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0005</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-7559</URL>
+        <Description>CVE-2017-7559</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1481665</URL>
+        <Description>bz#1481665: CVE-2017-7559 undertow: HTTP Request smuggling vulnerability (incomplete fix of CVE-2017-2666)</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Stuart Douglas (Red Hat).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+
+  <Vulnerability Ordinal="7" xmlns="http://www.icasi.org/CVRF/schema/vuln/1.1">
+    <Notes><Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">It was discovered that the CORS Filter did not add an HTTP Vary header indicating that the response varies depending on Origin. This permitted client and server side cache poisoning in some circumstances. </Note></Notes>
+    <DiscoveryDate>2017-08-21T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-08-22T00:00:00Z</ReleaseDate>
+    <Involvements><Involvement Party="Vendor" Status="Completed"></Involvement></Involvements>
+    <CVE>CVE-2017-7561</CVE>
+    <ProductStatuses><Status Type="Fixed">
+      <ProductID>6Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el6</ProductID>
+      <ProductID>7Server-JBEAP-7.0:eap7-jboss-ec2-eap-0:7.0.9-2.GA_redhat_2.ep7.el7</ProductID>
+    </Status></ProductStatuses>
+    <Threats><Threat Type="Impact"><Description>Moderate</Description></Threat></Threats>
+    <Remediations>
+      <Remediation Type="Vendor Fix"><Description xml:lang="en">
+Before applying this update, back up your existing Red Hat JBoss Enterprise Application Platform installation and deployed applications.
+
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258
+    </Description>
+      <URL>https://access.redhat.com/errata/RHSA-2018:0005</URL></Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-7561</URL>
+        <Description>CVE-2017-7561</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1483823</URL>
+        <Description>bz#1483823: CVE-2017-7561 resteasy: Vary header not added by CORS filter leading to cache poisoning</Description>
+      </Reference>
+    </References>
+    <Acknowledgments><Acknowledgment><Description>This issue was discovered by Jason Shepherd (Red Hat Product Security).</Description></Acknowledgment></Acknowledgments>
+  </Vulnerability>
+</cvrfdoc>
+

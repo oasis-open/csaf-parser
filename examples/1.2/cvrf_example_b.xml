@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cvrfdoc
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:cpe="http://cpe.mitre.org/language/2.0"
+  xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+  xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common"
+  xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0"
+  xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:ns0="http://purl.org/dc/elements/1.1/"
+  xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod"
+  xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0"
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+  >
+  <!-- Document wide context information -->
+  <DocumentTitle xml:lang="en">Red Hat Security Advisory: python-oslo-middleware security update</DocumentTitle>
+  <DocumentType>Security Advisory</DocumentType>
+  <DocumentPublisher Type="Vendor">
+    <ContactDetails>secalert@redhat.com</ContactDetails>
+    <IssuingAuthority>Red Hat Product Security</IssuingAuthority>
+  </DocumentPublisher>
+  <DocumentTracking>
+    <Identification>
+      <ID>RHSA-2017:0435</ID>
+    </Identification>
+    <Status>Final</Status>
+    <Version>1</Version>
+    <RevisionHistory>
+      <Revision>
+        <Number>1</Number>
+        <Date>2017-03-02T21:13:00Z</Date>
+        <Description>Current version</Description>
+      </Revision>
+    </RevisionHistory>
+    <InitialReleaseDate>2017-03-02T21:13:00Z</InitialReleaseDate>
+    <CurrentReleaseDate>2017-03-02T21:13:00Z</CurrentReleaseDate>
+    <Generator>
+      <Engine>Red Hat rhsa-to-cvrf 2.0</Engine>
+      <Date>2017-03-04T05:06:05Z</Date>
+    </Generator>
+  </DocumentTracking>
+  <DocumentNotes>
+    <Note Title="Topic" Type="Summary" Ordinal="1" xml:lang="en">
+An update for python-oslo-middleware is now available for Red Hat OpenStack Platform 9.0 (Mitaka).
+
+Red Hat Product Security has rated this update as having a security impact of Moderate. A Common Vulnerability Scoring System (CVSS) base score, which gives a detailed severity rating, is available for each vulnerability from the CVE link(s) in the References section.    </Note>
+    <Note Title="Details" Type="General" Ordinal="2" xml:lang="en">
+The OpenStack Oslo Middleware library provides components that can be injected into WSGI pipelines to intercept request and response flows. The base class can be enhanced with functionality like adding or updating HTTP headers, or to offer support for limiting size or connections.
+
+Security Fix(es):
+
+* An information-disclosure flaw was found in oslo.middleware. Software using the CatchError class could include sensitive values in a traceback's error message. System users could exploit this flaw to obtain sensitive information from OpenStack component error logs (for example, keystone tokens). (CVE-2017-2592)
+Red Hat would like to thank the OpenStack project for reporting this issue. Upstream acknowledges Divya K Konoor (IBM) as the original reporter.    </Note>
+    <Note Title="Terms of Use" Ordinal="3" Type="Legal Disclaimer" xml:lang="en">Please see https://www.redhat.com/footer/terms-of-use.html</Note>
+  </DocumentNotes>
+  <DocumentDistribution xml:lang="en">Copyright 2017 Red Hat, Inc. All rights reserved.</DocumentDistribution>
+  <AggregateSeverity Namespace="https://access.redhat.com/security/updates/classification/">Moderate</AggregateSeverity>
+  <DocumentReferences>
+    <Reference Type="Self">
+      <URL>https://rhn.redhat.com/errata/RHSA-2017-0435.html</URL>
+      <Description>https://rhn.redhat.com/errata/RHSA-2017-0435.html</Description>
+    </Reference>
+    <Reference>
+      <URL>https://access.redhat.com/security/updates/classification/#moderate</URL>
+      <Description>https://access.redhat.com/security/updates/classification/#moderate</Description>
+    </Reference>
+  </DocumentReferences>
+  <!-- Product tree section -->
+  <ProductTree xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod">
+    <Branch Type="Product Family" Name="Red Hat Enterprise Linux OpenStack Platform">
+      <Branch Type="Product Name" Name="Red Hat OpenStack Platform 9.0">
+        <FullProductName ProductID="7Server-RH7-RHOS-9.0">Red Hat OpenStack Platform 9.0</FullProductName>
+      </Branch>
+    </Branch>
+    <Branch Type="Product Version" Name="python-oslo-middleware-3.7.0-2.el7ost">
+      <FullProductName ProductID="python-oslo-middleware-3.7.0-2.el7ost">python-oslo-middleware-3.7.0-2.el7ost.src.rpm</FullProductName>
+    </Branch>
+    <Relationship ProductReference="python-oslo-middleware-3.7.0-2.el7ost"
+      RelationType="Default Component Of" RelatesToProductReference="7Server-RH7-RHOS-9.0">
+      <FullProductName ProductID="7Server-RH7-RHOS-9.0:python-oslo-middleware-3.7.0-2.el7ost">python-oslo-middleware-3.7.0-2.el7ost as a component of Red Hat OpenStack Platform 9.0</FullProductName>
+    </Relationship>
+  </ProductTree>
+  <!-- Vulnerability section -->
+  <vuln:Vulnerability Ordinal="1"
+   xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln">
+    <Notes>
+      <Note Title="Vulnerability Description" Type="General" Ordinal="1" xml:lang="en">An information-disclosure flaw was found in oslo.middleware. Software using the CatchError class could include sensitive values in a traceback's error message. System users could exploit this flaw to obtain sensitive information from OpenStack component error logs (for example, keystone tokens). </Note>
+    </Notes>
+    <DiscoveryDate>2017-01-18T00:00:00Z</DiscoveryDate>
+    <ReleaseDate>2017-01-26T00:00:00Z</ReleaseDate>
+    <Involvements>
+      <Involvement Party="Vendor" Status="Completed"/>
+    </Involvements>
+    <CVE>CVE-2017-2592</CVE>
+    <ProductStatuses>
+      <Status Type="Fixed">
+        <ProductID>7Server-RH7-RHOS-9.0:python-oslo-middleware-3.7.0-2.el7ost</ProductID>
+      </Status>
+    </ProductStatuses>
+    <Threats>
+      <Threat Type="Impact">
+        <Description>Moderate</Description>
+      </Threat>
+    </Threats>
+
+
+    <Remediations>
+      <Remediation Type="Vendor Fix">
+        <Description xml:lang="en">
+For details on how to apply this update, which includes the changes described in this advisory, refer to:
+
+https://access.redhat.com/articles/11258    </Description>
+        <URL>https://rhn.redhat.com/errata/RHSA-2017-0435.html</URL>
+      </Remediation>
+    </Remediations>
+    <References>
+      <Reference>
+        <URL>https://access.redhat.com/security/cve/CVE-2017-2592</URL>
+        <Description>CVE-2017-2592</Description>
+      </Reference>
+      <Reference>
+        <URL>https://bugzilla.redhat.com/show_bug.cgi?id=1414698</URL>
+        <Description>bz#1414698: CVE-2017-2592 python-oslo-middleware: CatchErrors leaks sensitive values into error logs</Description>
+      </Reference>
+    </References>
+    <Acknowledgments>
+      <Acknowledgment>
+        <Description>Red Hat would like to thank the OpenStack project for reporting this issue. Upstream acknowledges Divya K Konoor (IBM) as the original reporter.</Description>
+      </Acknowledgment>
+    </Acknowledgments>
+  </vuln:Vulnerability>
+  <!-- No more elements to follow -->
+</cvrfdoc>
