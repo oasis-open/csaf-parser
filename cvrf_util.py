@@ -123,7 +123,8 @@ def chop_ns_prefix(element):
     return element[element.rindex("}") + 1:]
 
 
-def print_header_rows(cvrf_doc, cvrf_version, args, output_format, f=sys.stdout, related_product_tags=[]):
+def print_header_rows(cvrf_doc, cvrf_version, args, output_format, f=sys.stdout, related_product_tags=None):
+    related_product_tags = [] if related_product_tags is None else related_product_tags
     column_names = list()
     column_names.append('Namespace')
     column_names.append('Tag')
@@ -155,13 +156,14 @@ def print_header_rows(cvrf_doc, cvrf_version, args, output_format, f=sys.stdout,
         writer.writerow(column_names)
 
 
-def print_footer_rows(cvrf_doc, cvrf_version, args, output_format, f=sys.stdout, related_product_tags=[]):
+def print_footer_rows(cvrf_doc, cvrf_version, args, output_format, f=sys.stdout, related_product_tags=None):
+    related_product_tags = [] if related_product_tags is None else related_product_tags
     if output_format == 'html':
         html = '</table>'
         print(html, file=f)
 
 
-def print_node(cvrf_doc, cvrf_version, args, output_format, node, strip_ns, f=sys.stdout, related_product_tags=[]):
+def print_node(cvrf_doc, cvrf_version, args, output_format, node, strip_ns, f=sys.stdout, related_product_tags=None):
     """
     Print each XML node
 
@@ -169,7 +171,7 @@ def print_node(cvrf_doc, cvrf_version, args, output_format, node, strip_ns, f=sy
     strip_ns: boolean that when true indicates the namespace prefix will be chomped
     f: the file to print to (default is stdout)
     """
-
+    related_product_tags = [] if related_product_tags is None else related_product_tags
     related_values = {}
 
     # should we collect related product elements data?  (for vuln prod elements only)
