@@ -66,7 +66,7 @@ class CVRF_Syntax(object):
 
 class PrependerAction(argparse.Action):
     """
-    Customization for argparse. Prepends some static text to an accumalated list.
+    Customization for argparse. Prepends some static text to an accumulated list.
     """
     prepend_text = ""
 
