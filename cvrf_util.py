@@ -8,7 +8,7 @@ For additional information about CSAF or CVRF visit:
 https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=csaf
 
 Requirements:
-* lxml (version 3.7.3)
+* lxml (version 4.6.2)
 
 This tool is based on the original cvrfparse utility created by Mike Schiffman of
 Farsight Security under the MIT License. https://github.com/mschiffm/cvrfparse
