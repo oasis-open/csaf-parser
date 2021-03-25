@@ -8,7 +8,7 @@ For additional information about CSAF or CVRF visit:
 https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=csaf
 
 Requirements:
-* lxml (version 3.7.3)
+* lxml (version 4.6.2)
 
 This tool is based on the original cvrfparse utility created by Mike Schiffman of
 Farsight Security under the MIT License. https://github.com/mschiffm/cvrfparse
@@ -644,6 +644,25 @@ def get_first_node_in_doc(parsables, cvrf_doc):
     return None
 
 
+def derive_version_from_namespace(root):
+    """Simplistic version detection of XML document from ETree object root."""
+    not_found = ''
+    versions = (
+        'http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.1/cvrf',
+        'http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf',
+    )
+    if root is None:
+        return not_found
+
+    mandatory_element = 'DocumentType'
+    for version in versions:
+        token = '{%s}%s' % (version, mandatory_element)
+        if root.find(token) is not None:
+            return version
+
+    return not_found
+
+
 def main(progname=None):
     # simple standard python logging
     logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename='csaf-parser.log',
@@ -776,15 +795,8 @@ def main(progname=None):
 
     # check to make sure cvrf namespace in doc matches cvrf version from command line args
     logging.info('verifying cvrf version...')
-    first_node = get_first_node_in_doc(parsables, cvrf_doc)
-    if first_node is not None:
-        if 'cvrf' in first_node.nsmap:
-            doc_cvrf_version = first_node.nsmap['cvrf']
-        else:
-            doc_cvrf_version = first_node.nsmap[None]
-    else:
-        doc_cvrf_version = ''
-    logging.info('cvrf version from document: ' + doc_cvrf_version)
+    doc_cvrf_version = derive_version_from_namespace(cvrf_doc.getroot())
+    logging.info('cvrf version from document: %s' % doc_cvrf_version)
     arg_cvrf_version = CVRF_Syntax(cvrf_version).NAMESPACES["CVRF"].replace("{", "").replace("}", "")
     logging.info('cvrf version from args: ' + arg_cvrf_version)
 
