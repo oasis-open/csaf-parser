@@ -6,7 +6,7 @@
 
 <p>This GitHub public repository ( <b><a href="https://github.com/oasis-open/csaf-parser">https://github.com/oasis-open/csaf-parser</a></b> ) was created at the request of the <a href="https://www.oasis-open.org/committees/csaf/">OASIS Common Security Advisory Framework (CSAF) TC</a> as an <a href="https://www.oasis-open.org/resources/open-repositories/">OASIS TC Open Repository</a> to support development of open source resources related to Technical Committee work.</p>
 
-**NOTE**: The current version of this parser only supports [CVRF 1.2 (XML-based specification)](http://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html). It does not support the [CSAF 2.0 JSON schema draft](https://github.com/oasis-tcs/csaf/blob/master/csaf_2.0/json_schema/csaf_json_schema.json). 
+**NOTE**: The current version of this parser only supports [CVRF 1.2 (XML-based specification)](http://docs.oasis-open.org/csaf/csaf-cvrf/v1.2/cs01/csaf-cvrf-v1.2-cs01.html). It does not support the [CSAF 2.0 JSON schema](https://github.com/oasis-tcs/csaf/blob/master/csaf_2.0/json_schema/csaf_json_schema.json). To obtain information about several tools to parse, create, and validate CSAF 2.0 content go to https://csaf.io.
 
 <p>While this TC Open Repository remains associated with the sponsor TC, its development priorities, leadership, intellectual property terms, participation rules, and other matters of governance are <a href="https://github.com/oasis-open/csaf-parser/blob/master/CONTRIBUTING.md#governance-distinct-from-oasis-tc-process">separate and distinct</a> from the OASIS TC Process and related policies.</p>
 
